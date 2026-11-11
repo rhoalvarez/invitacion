@@ -1,0 +1,573 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --green: #609d3d;
+  --dark-green: #315c32;
+  --light-green: #b9df82;
+  --pink: #ff78a6;
+  --cream: #fff9e9;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Baloo 2", sans-serif;
+  color: var(--dark-green);
+
+  background:
+    linear-gradient(
+      to bottom,
+      #a9ddfa 0%,
+      #dff5ff 43%,
+      #a5d66f 43%,
+      #65a746 100%
+    );
+}
+
+/* FONDO DEL JARDÍN */
+
+.garden-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sun {
+  position: absolute;
+  top: 35px;
+  right: 9%;
+  font-size: 65px;
+  animation: sunMove 5s ease-in-out infinite;
+}
+
+.cloud {
+  position: absolute;
+  font-size: 65px;
+  opacity: .8;
+  animation: cloudMove 12s ease-in-out infinite alternate;
+}
+
+.cloud-one {
+  top: 70px;
+  left: 8%;
+}
+
+.cloud-two {
+  top: 140px;
+  right: 20%;
+  animation-delay: 2s;
+}
+
+/* DECORACIONES */
+
+.garden-flower,
+.garden-zombie {
+  position: fixed;
+  z-index: 0;
+  font-size: clamp(35px, 5vw, 65px);
+  animation: float 4s ease-in-out infinite;
+}
+
+.flower-one {
+  left: 4%;
+  bottom: 12%;
+}
+
+.flower-two {
+  right: 5%;
+  bottom: 18%;
+  animation-delay: 1s;
+}
+
+.flower-three {
+  left: 7%;
+  top: 22%;
+  animation-delay: 2s;
+}
+
+.flower-four {
+  right: 8%;
+  top: 18%;
+  animation-delay: .5s;
+}
+
+.zombie-one {
+  right: 4%;
+  bottom: 38%;
+  animation-delay: 1s;
+}
+
+.zombie-two {
+  left: 3%;
+  bottom: 35%;
+  animation-delay: 2s;
+}
+
+/* CONTENEDOR PRINCIPAL */
+
+.page {
+  min-height: 100vh;
+  padding: 30px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.top-badge {
+  background: #fff7d8;
+  border: 3px solid white;
+  color: #548637;
+  border-radius: 30px;
+  padding: 9px 20px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  box-shadow: 0 5px 0 #8bb95d;
+  text-align: center;
+}
+
+/* TARJETA */
+
+.card {
+  width: min(100%, 660px);
+  text-align: center;
+  padding: 28px clamp(18px, 5vw, 45px);
+  background: linear-gradient(180deg, #fffdf1, #fff7dd);
+  border: 5px solid white;
+  border-radius: 28px;
+  box-shadow:
+    0 9px 0 #619743,
+    0 20px 45px #315c3240;
+  position: relative;
+}
+
+/* ENCABEZADO */
+
+.game-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  color: #548637;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding-bottom: 13px;
+  border-bottom: 2px dashed #c9dba3;
+}
+
+.versus {
+  background: #ffe6a6;
+  color: #d96b40;
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+}
+
+.mini-flowers {
+  font-size: 28px;
+  letter-spacing: 6px;
+  margin: 13px 0;
+}
+
+.eyebrow {
+  color: #699d3e;
+  font-weight: 800;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* TITULO */
+
+h1 {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1;
+  margin: 10px 0;
+  color: #4d8438;
+  text-shadow: 2px 3px 0 #d5edaa;
+}
+
+h1 span {
+  color: #ed6798;
+  display: inline-block;
+  text-shadow: 2px 3px 0 #ffd5e3;
+}
+
+.intro {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin: 13px 0;
+}
+
+/* PERSONAJES */
+
+.characters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 20px 0;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 53px;
+  animation: characterMove 2.5s ease-in-out infinite;
+}
+
+.character small {
+  font-size: 12px;
+  font-weight: 800;
+  color: #548637;
+}
+
+.character.zombie {
+  animation-delay: .5s;
+}
+
+.character.versus {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  animation: none;
+}
+
+/* TORTA */
+
+.cake {
+  width: 150px;
+  height: 130px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.cake-bottom,
+.cake-middle,
+.cake-top {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid white;
+  box-shadow: 0 4px 0 #e9a0b7;
+}
+
+.cake-bottom {
+  bottom: 17px;
+  width: 140px;
+  height: 42px;
+  border-radius: 12px 12px 18px 18px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ff9fbd 0 17px,
+    #ffc4d5 17px 34px
+  );
+}
+
+.cake-middle {
+  bottom: 53px;
+  width: 112px;
+  height: 30px;
+  border-radius: 12px 12px 7px 7px;
+  background: #ffe0a8;
+}
+
+.cake-top {
+  bottom: 78px;
+  width: 112px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff2d5;
+}
+
+.plate {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 158px;
+  height: 12px;
+  border-radius: 50%;
+  background: #8dcf86;
+}
+
+.candle {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 91px;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 28px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    135deg,
+    #8dcfc4 0 5px,
+    white 5px 9px
+  );
+}
+
+.candle i {
+  position: absolute;
+  width: 14px;
+  height: 19px;
+  border-radius: 50% 50% 50% 0;
+  background: #ffb83e;
+  transform: rotate(-45deg);
+  top: -19px;
+  left: -2px;
+  box-shadow: 0 0 17px #ffc44e;
+  animation: flame .8s infinite alternate;
+}
+
+/* MISIÓN */
+
+.mission {
+  color: #608d38;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: #e9f5d3;
+  border: 2px dashed #a8cb7c;
+  padding: 9px;
+  border-radius: 12px;
+  margin: 15px auto;
+}
+
+/* BOTONES */
+
+button {
+  font: inherit;
+  border: 0;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.surprise-btn {
+  display: block;
+  margin: 15px auto 13px;
+  padding: 14px 25px;
+  border-radius: 15px;
+  color: white;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #78b84d, #4f963c);
+  box-shadow:
+    0 7px 0 #34722f,
+    0 13px 24px #4f963c40;
+}
+
+.music-btn {
+  background: #fff0f5;
+  color: #bf5d83;
+  border: 2px solid #ffd0df;
+  border-radius: 25px;
+  padding: 9px 20px;
+  font-weight: 700;
+}
+
+/* MENSAJE SORPRESA */
+
+.message {
+  margin-top: 23px;
+  padding: 22px 20px;
+  border-radius: 23px;
+  background: linear-gradient(135deg, #f0f8dc, #fff9e9);
+  border: 3px dashed #a5c979;
+  animation: pop .6s ease both;
+}
+
+.message h2 {
+  color: #558d3a;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  margin: 7px 0;
+}
+
+.message p {
+  font-size: 1.08rem;
+  line-height: 1.55;
+  margin: 10px 0;
+}
+
+.message-flowers {
+  font-size: 27px;
+}
+
+.big-wish {
+  color: #d95788;
+  font-weight: 800;
+}
+
+.signature {
+  font-family: Pacifico, cursive;
+  color: #d95788;
+  font-size: 1.3rem;
+  margin-top: 10px;
+}
+
+.victory {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #ffedb5;
+  color: #8b6728;
+  font-weight: 800;
+}
+
+.hidden {
+  display: none;
+}
+
+/* PIE */
+
+.footer {
+  text-align: center;
+  margin: 18px 0 0;
+  color: #315c32;
+  font-weight: 800;
+  text-shadow: 0 1px white;
+}
+
+/* ANIMACIONES */
+
+@keyframes float {
+  50% {
+    transform: translateY(-15px) rotate(12deg);
+  }
+}
+
+@keyframes characterMove {
+  50% {
+    transform: translateY(-9px) rotate(5deg);
+  }
+}
+
+@keyframes sunMove {
+  50% {
+    transform: translateY(-8px) rotate(15deg);
+  }
+}
+
+@keyframes cloudMove {
+  to {
+    transform: translateX(25px);
+  }
+}
+
+@keyframes flame {
+  to {
+    transform: rotate(-35deg) scale(.85);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* CONFETI */
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 14px;
+  border-radius: 3px;
+  z-index: 5;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translate3d(var(--drift), 110vh, 0) rotate(760deg);
+    opacity: .9;
+  }
+}
+
+/* CELULARES */
+
+@media (max-width: 480px) {
+
+  .page {
+    padding: 22px 12px;
+  }
+
+  .card {
+    border-radius: 25px;
+    padding: 23px 15px;
+  }
+
+  .game-header {
+    gap: 9px;
+    font-size: .95rem;
+  }
+
+  .mini-flowers {
+    letter-spacing: 2px;
+    font-size: 23px;
+  }
+
+  .intro {
+    font-size: 1.03rem;
+  }
+
+  .garden-flower,
+  .garden-zombie {
+    opacity: .65;
+    font-size: 34px;
+  }
+
+  .characters {
+    gap: 14px;
+  }
+
+  .character {
+    font-size: 43px;
+  }
+
+  .character small {
+    font-size: 10px;
+  }
+
+  .surprise-btn {
+    font-size: 1rem;
+    padding: 13px 17px;
+  }
+}
+
+/* RESPETAR MOVIMIENTO REDUCIDO */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
